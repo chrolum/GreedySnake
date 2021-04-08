@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 
 namespace GameDef
@@ -23,4 +24,20 @@ namespace GameDef
 		RESTART,
 		NOACTION
 	}
+
+	class GlobalData
+	{
+		public static Dictionary<char, GameDef.GameObj> char2GameObjDict = new Dictionary<char, GameObj>(){
+			{'#', GameDef.GameObj.WALL},
+			{' ', GameDef.GameObj.AIR},
+			{'.', GameDef.GameObj.COIN},
+		};
+
+		public static Dictionary<GameDef.GameObj, int> ItemPoint = new Dictionary<GameDef.GameObj, int>()
+		{
+			{GameDef.GameObj.ALLPE, 300},
+			{GameDef.GameObj.COIN, 100}
+		};
+	}
+	
 }

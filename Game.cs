@@ -13,6 +13,8 @@ namespace GreedySnake
 	class Game
 	{
 		// store scence data
+
+		Stage stage;
 		private int SenceWidth, SenceHeigth;
 		private Snake snake;
 		private int gamePoint = 0;
@@ -26,11 +28,7 @@ namespace GreedySnake
 		GameDef.GameObj[,] running_map;//no sanke here
 		char[,] draw_map;
 		public int getPoint() {return this.gamePoint;}
-		private Dictionary<GameDef.GameObj, int> ItemPoint = new Dictionary<GameDef.GameObj, int>()
-		{
-			{GameDef.GameObj.ALLPE, 300},
-			{GameDef.GameObj.COIN, 100}
-		};
+
 
 		public Game(int heigth, int width, int stage_no = 1)
 		{
@@ -39,6 +37,7 @@ namespace GreedySnake
 			snake = new Snake();
 			this.running_map = new GameDef.GameObj[heigth, width];
 			this.draw_map = new char[heigth, width];
+
 
 			//TODO: tmp_test test finished remove it
 			running_map[10, 10] = GameDef.GameObj.ALLPE;
@@ -104,7 +103,7 @@ namespace GreedySnake
 
 		public void Restart()
 		{
-
+			//TODO
 		}
 		public void draw()
 		{
@@ -172,10 +171,10 @@ namespace GreedySnake
 		private void AddPoint(GameDef.GameObj obj)
 		{
 			// int p = 0;
-			if (!ItemPoint.ContainsKey(obj))
+			if (!GameDef.GlobalData.ItemPoint.ContainsKey(obj))
 				return;
 			
-			this.gamePoint += ItemPoint[obj];
+			this.gamePoint += GameDef.GlobalData.ItemPoint[obj];
 		}
 
 		private void EatingItselfCheck()
@@ -283,6 +282,8 @@ namespace GreedySnake
 				curr = curr.Next;
 			}
 			this.dir = d;
+
+			// TODO 更新屏幕范围
 		}
 
 		public (int, int) GetNewSnakeNodeCoords()
